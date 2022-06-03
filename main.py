@@ -29,10 +29,10 @@ def parse():
 
 def join():
 	text = None
-	with open("foxyproxy.json", "r") as f:
+	with open("foxyproxy-tpl.json", "r") as f:
 		text = f.read()
 		f.close()
-
+	rules = parse()
 	buff = [str("""{
 			"title": "✧(๑•̀ㅂ•́)و✧",
 			"active": true,
@@ -40,9 +40,9 @@ def join():
 			"type": 1,
 			"protocols": 1
 		}""") % rule
-		for rule in parse()
+		for rule in rules
 	]
-
+	print(buff)
 	with open("foxyproxy.new.json", "w") as f:
 		f.write(re.sub('"fuckmylife"', ",\n		".join(buff), text))
 
